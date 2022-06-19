@@ -160,37 +160,43 @@
             <div class="box">
                 <div class="contactUs form">
                     <h3>send a message</h3>
-                    <form>
+                    <div class="alert alert-success alert-dismissible fade show d-none my-alert" role="alert">
+                        <strong>THANK YOU</strong> We have received your message.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    <form name="R.A.I_CONTACT">
                         <div class="formBox">
                             <div class="row50">
                                 <div class="inputBox">
                                     <span>First Name</span>
-                                    <input type="text" placeholder="Raihan">
+                                    <input type="text" placeholder="Raihan" name="first_name">
                                 </div>
                                 <div class="inputBox">
                                     <span>Last Name</span>
-                                    <input type="text" placeholder="Firmansyah">
+                                    <input type="text" placeholder="Firmansyah" name="last_name">
                                 </div>
 
                                 <div class="inputBox">
                                     <span>E-mail</span>
-                                    <input type="text" placeholder="xxx@gmail.com">
+                                    <input type="email" placeholder="xxx@gmail.com" name="e-mail" data-sb-validations="required,email">
+                                    <div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
+                                    <div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
                                 </div>
                                 <div class="inputBox">
                                     <span>Phone Number</span>
-                                    <input type="text" placeholder="0812********">
+                                    <input type="text" placeholder="0812********" name="phone_number">
                                 </div>
                             </div>
                             <div class="row100">
                                 <div class="inputBox">
                                     <span>Message</span>
-                                    <textarea placeholder="Hi, my name is Raihan, i want to ......"></textarea>
+                                    <textarea placeholder="Hi, my name is Raihan, i want to ......" name="message"></textarea>
                                 </div>
                             </div>
 
                             <div class="row100">
                                 <div class="inputBox">
-                                    <input type="submit" value="send">
+                                    <input type="submit" value="send" class="btn btn-kirim">
                                 </div>
                             </div>
                         </div>
@@ -286,6 +292,23 @@
         sec_dot.style.transform = 'rotate(${s * 6}deg)';
     })
     </script>
+
+    <script>
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbwM96Rr8KL5_P9lTEQhFKyv7_3EyV9XEXmyKO_xkoWCSuGmcAvPHGYMu0e3GMlZgNXvtw/exec'
+  const form = document.forms['R.A.I_CONTACT']
+  const myAlert = document.querySelector('.my-alert');
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    myAlert.classList.toggle('d-none');
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      .then(response => {
+        form.reset();
+        console.log('Success!', response);
+    })
+      .catch(error => console.error('Error!', error.message));
+  })
+</script>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
