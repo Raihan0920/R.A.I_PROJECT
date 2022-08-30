@@ -78,8 +78,8 @@
             <div class="container">
                 <div class="masthead-subheading fw-bold">"WELCOME"</div>
                 <div class="masthead-heading fw-bold">"GLAD YOU VISITED OUR PLACE"</div>
-                <a class="btn btn-primary btn-xl text-uppercase" href="#service">Tell Me More</a>
             </div>
+                <a class="btn btn-primary btn-xl text-uppercase" href="#service">Tell Me More</a>
             <br><br><br><br>
         </header>
     </section>
@@ -303,6 +303,7 @@
     myAlert.classList.toggle('d-none');
     fetch(scriptURL, { method: 'POST', body: new FormData(form)})
       .then(response => {
+        myAlert.classList.toggle('d-none');
         form.reset();
         console.log('Success!', response);
     })
